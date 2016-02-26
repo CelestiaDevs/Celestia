@@ -1140,4 +1140,18 @@ exports.Formats = [
 		ruleset: 'Perseverance',
 		banlist: 'Perseverance',
 },
+{
+	name: "Titania's Domain",
+	section: "Other Metagames",
+	desc: ["Custom Tier for Celestia coded by: DarkNightSkies(NotDNS)"],
+	mod: 'titaniasdomain',
+	
+	banlist: ['Excadrill', 'Scizor', 'Skarmory', 'Crobat', 'Bisharp', 'Aegislash', 'Crobat', 'Magnezone', 'Uber', 'Gengarite', 'Pinsirite', 'Kankhaskanite', 'Mawilite', 'Electric Terrian', 'Grass Terrain', 'Iron Head'],
+	ruleset: ['Pokemon', 'Standard', 'Cancel Mod', 'HP Percentage Mod', 'Team Preview', 'OHKO Clause'],
+	
+	 onBegin: function () {
+			this.setTerrain('mistyterrain');
+			this.addPseudoWeather('trickroom');
+			},
+}
 ];
