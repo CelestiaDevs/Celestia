@@ -1102,4 +1102,42 @@ exports.Formats = [
 		debug: true,
 		ruleset: ['Pokemon', 'HP Percentage Mod', 'Cancel Mod'],
 	},
+	{
+    name: "Perseverance",
+    section: "BW2 Singles",
+    desc: ["The Perseverance tier."],
+    defaultlevel: 100,
+    
+    onFaint: function (pokemon) {
+    	var name = pokemon.side.name;
+    	var winner = '';
+    	if (pokemon.side.id === 'p1') {
+    		winner = 'p2';
+    	} else {
+    		winner = 'p1';
+    	}
+    	pokemon.battle.win(winner);
+    },
+    ruleset: ['Pokemon', 'Standard', 'Evasion Abilities Clause', 'Team Preview'],
+    banlist: ['Uber', 'Drizzle ++ Swift Swim', 'Soul Dew', 'Shuckle', 'Sableye'],
+},
+{
+	name: "Perseverance(Random)",
+	section: "BW2 Singles",
+	desc: ["The Perseverance tier but with random pokemon."],
+	team: 'random',
+	
+	onFaint: function(pokemon) {
+		var name = pokemon.side.name;
+		var winner = '';
+		if (pokemon.side.id === 'p1') {
+			winner = 'p2';
+		} else {
+			winner = 'p1';
+		}
+		pokemon.battle.win(winner);
+		},
+		ruleset: 'Perseverance',
+		banlist: 'Perseverance',
+},
 ];
