@@ -1,7 +1,9 @@
 'use strict';
 
 let fs = require('fs');
+let color = require('../config/color');
 let path = require('path');
+let highRollers = ['notdns', 'darknightskies'];
 
 let shop = [
 	['Symbol', 'Buys a custom symbol to go infront of name and puts you at top of userlist. (Temporary until restart, certain symbols are blocked)', 5],
@@ -10,7 +12,7 @@ let shop = [
 	['League Room', 'Purchases a room at a reduced rate for use with a league.  A roster must be supplied with at least 10 members for this room.', 25],
 	['Trainer', 'Buys a trainer card which shows information through a command. (You supply, can be refused)', 40],
 	['Staff Help', 'Staff member will help set up roomintros and anything else needed in a room. Response may not be immediate.', 50],
-	['Room', 'Buys a chatroom for you to own. (within reason, can be refused)', 100],
+	['Date', 'Buys you a date with a staff member. They must play along. (within reason, can be refused)', 100],
 ];
 
 let shopDisplay = getShopDisplay(shop);
@@ -65,18 +67,18 @@ function logMoney(message) {
  * @return {String} display
  */
 function getShopDisplay(shop) {
-	let display = "<table border='1' cellspacing='0' cellpadding='5' width='100%'>" +
-					"<tbody><tr><th>Command</th><th>Description</th><th>Cost</th></tr>";
+	let display = '<table syle="width: 100%; border: 1px solid #98D9F7; border-top-right-radius: 4px; border-top-left-radous: 4px; background: rgba(158, 253, 159, 0.7)"' +
+					'<tr><th color="#502243">Item</th><th color="#502243">Description</th><th color="#502243">Cost</th></tr>';
 	let start = 0;
 	while (start < shop.length) {
 		display += "<tr>" +
-						"<td align='center'><button name='send' value='/buy " + shop[start][0] + "'><b>" + shop[start][0] + "</b></button>" + "</td>" +
-						"<td align='center'>" + shop[start][1] + "</td>" +
-						"<td align='center'>" + shop[start][2] + "</td>" +
+						'<td style="background: rgba(158, 253, 159, 0.5); border: 1px solid #98D9F7; padding: 5px; border-radius: 4px; text-align: center;"><button name="send" value="/buy ' + shop[start][0] + '" style="border: 1px solid #98D9F7; background: #9EFD9F7; color: #9EFD9F7; text-shadow: 0px 0px 2px #e7f6fd; padding: 5px; border-radius: 4px;">' + shop[start][0] + '</button>' + '</td>' +
+						'<td style="background: rgba(158, 253, 159, 0.5); border: 1px solid #98D9F7; padding: 5px; border-radius: 4px; text-align: center;">' + shop[start][1] + '</td>' +
+						'<td style="background: rgba(158, 253, 159, 0.5); border: 1px solid #98D9F7; padding: 5px; border-radius: 4px; text-align: center;">' + shop[start][2] + '</td>' +
 					"</tr>";
 		start++;
 	}
-	display += "</tbody></table><center>To buy an item from the shop, use /buy <em>command</em>.</center>";
+	display += '</table><div style="border: 1px solid #98D9F7; border-top: none; background: rgba(158, 253, 159, 0.7); color: #502243; text-shadow: 0px 0px 2px #e7f6fd; padding: 5px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px;">To buy an item from the shop, use /buy command.</div>';
 	return display;
 }
 
@@ -225,6 +227,7 @@ exports.commands = {
 	transfermoneyhelp: ["/transfer [user], [amount] - Transfer a certain amount of money to a user."],
 
 	store: 'shop',
+	stall: 'shop',
 	shop: function (target, room, user) {
 		if (!this.canBroadcast()) return;
 		return this.sendReply("|raw|" + shopDisplay);
