@@ -1,3 +1,6 @@
+//EZ-TC Plugin 
+//Credit to jd
+
 var fs = require('fs');
 var serialize = require('node-serialize');
 var trainerCards = {};
