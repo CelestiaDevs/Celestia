@@ -3,7 +3,6 @@
 let fs = require('fs');
 let color = require('../config/color');
 let path = require('path');
-let highRollers = ['notdns', 'darknightskies'];
 
 let shop = [
 	['Symbol', 'Buys a custom symbol to go infront of name and puts you at top of userlist. (Temporary until restart, certain symbols are blocked)', 5],
